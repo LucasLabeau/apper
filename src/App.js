@@ -8,7 +8,7 @@ function App() {
         <NavBar />
         <main>
           <h3>ApperMarket</h3>
-          <ItemListContainer greeting="Bienvenido" />
+          <ItemListContainer greeting="Bienvenido a nuestro sitio" />
         </main>
     </div>
   );
