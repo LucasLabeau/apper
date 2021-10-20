@@ -1,37 +1,35 @@
+import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
+import CartWidget from './CartWidget.js';
 
 
 const NavBar = () => {
   return(
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div className="container-fluid">
-        <a className="navbar-brand" href="/">ApperMarket</a>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarText">
-          <ul className="navbar-nav mr-auto">
-           <li className="nav-item">
-             <a className="nav-link" href="/">Home</a>
-           </li>
-           <li className="nav-item dropdown">
-             <a className="nav-link dropdown-toggle dropBtn" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               Categories
-             </a>
-             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-               <a className="dropdown-item" href="/">Action</a>
-               <a className="dropdown-item" href="/">Arcade</a>
-               <a className="dropdown-item" href="/">Adventure</a>
-               <a className="dropdown-item" href="/">Sports</a>
-               <a className="dropdown-item" href="/">Strategy</a>
-               <div className="dropdown-divider"></div>
-               <a className="dropdown-item" href="/">Most Wanted</a>
-               <a className="dropdown-item" href="/">Free To Play</a>
-             </div>
-           </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <Navbar variant="dark" bg="dark" expand="lg" sticky="top">
+      <Container fluid>
+        <Navbar.Brand href="/">ApperMarket</Navbar.Brand>
+        <Navbar.Toggle aria-controls="mi-navbar" />
+        <Navbar.Collapse id="mi-navbar">
+          <Nav>
+            <Nav.Link href="/">Home</Nav.Link>
+            <NavDropdown
+              id="nav-dropdown-dark-example"
+              title="Dropdown"
+              menuVariant="dark"
+            >
+              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">Arcade</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Adventure</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Sports</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Strategy</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="#action/3.4">Most Wanted</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.4">Free To Play</NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+          <CartWidget />
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   )
 }
 export default NavBar;
