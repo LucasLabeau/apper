@@ -13,7 +13,7 @@ const NavBar = () => {
             <Nav.Link href="/">Home</Nav.Link>
             <NavDropdown
               id="nav-dropdown-dark-example"
-              title="Dropdown"
+              title="Categories"
               menuVariant="dark"
             >
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -30,6 +30,6 @@ const NavBar = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-  )
+  );
 }
 export default NavBar;
