@@ -17,3 +17,23 @@ code {
   background-color: none;
   border: none;
 }
+
+.products {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+}
+
+.productCard {
+  margin: 5px;
+  height: 400px;
+}
+
+.productCardImg {
+  margin: 5px;
+  width: 100px;
+  height: auto;
+  align-self: center;
+}
