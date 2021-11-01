@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
-import ItemCount from './ItemCount.js'
+import ItemCount from './ItemCount.js';
 
 const Item = (item) => {
   const agregarAlCarrito = (total) => {
@@ -8,15 +8,12 @@ const Item = (item) => {
   }
 
   return (
-    <Card key={item.id} className="productCard text-center col-lg-4" border="secondary">
+    <Card key={item.id} className="productCard text-center col-lg-3" border="secondary">
       <div className="productCardImg">
         <Card.Img variant="top" src={item.image}/>
       </div>
-      <Card.Body>
+      <Card.Body className="productListCardBody">
         <Card.Title>{item.name}</Card.Title>
-        <Card.Text style={{fontSize: '.8rem'}}>
-          {item.description}
-        </Card.Text>
         <Card.Text>${item.price}</Card.Text>
         <ItemCount initial={1} stock={item.stock} onAdd={agregarAlCarrito} />
       </Card.Body>

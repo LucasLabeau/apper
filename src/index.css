@@ -12,6 +12,12 @@ code {
     monospace;
 }
 
+.mainContainer {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
 .dropBtn {
   text-decoration: none;
   background-color: none;
@@ -28,7 +34,7 @@ code {
 
 .productCard {
   margin: 5px;
-  height: 400px;
+  height: 300px;
 }
 
 .productCardImg {
@@ -36,4 +42,10 @@ code {
   width: 100px;
   height: auto;
   align-self: center;
+}
+
+.productListCardBody {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
 }
