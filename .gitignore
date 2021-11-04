@@ -3,6 +3,7 @@
 # dependencies
 /node_modules/*
 !/node_modules/react-bootstrap
+!/node_modules/react-router-bootstrap
 /.pnp
 .pnp.js
 

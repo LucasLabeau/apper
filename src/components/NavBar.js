@@ -1,29 +1,41 @@
+import { useEffect, useState } from 'react';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import CartWidget from './CartWidget.js';
 
 
 const NavBar = () => {
+  const [categories, setCategories] = useState([]);
+
+  const getCategories = async() => {
+    const jsonData = await fetch('https://618214a284c2020017d89c79.mockapi.io/api/categories');
+    const data = await jsonData.json();
+
+    setCategories(data);
+  }
+
+  useEffect(() => {
+    getCategories();
+  }, []);
+
   return(
     <Navbar variant="dark" bg="dark" expand="lg" sticky="top">
       <Container fluid>
-        <Navbar.Brand href="/">ApperMarket</Navbar.Brand>
+        <LinkContainer to="/"><Navbar.Brand>ApperMarket</Navbar.Brand></LinkContainer>
         <Navbar.Toggle aria-controls="mi-navbar" />
         <Navbar.Collapse id="mi-navbar">
           <Nav>
-            <Nav.Link href="/">Home</Nav.Link>
+            <LinkContainer to="/"><Nav.Link>Home</Nav.Link></LinkContainer>
             <NavDropdown
               id="nav-dropdown-dark-example"
               title="Categories"
               menuVariant="dark"
             >
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Arcade</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Adventure</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Sports</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Strategy</NavDropdown.Item>
+              { categories.map((c) => (
+                <LinkContainer to={`/category/${c.id}`}><NavDropdown.Item>{c.name}</NavDropdown.Item></LinkContainer>
+              )) }
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">Most Wanted</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.4">Free To Play</NavDropdown.Item>
+              <LinkContainer to="/free2play"><NavDropdown.Item>Free To Play</NavDropdown.Item></LinkContainer>
             </NavDropdown>
           </Nav>
           <CartWidget />

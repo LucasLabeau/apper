@@ -34,7 +34,7 @@ code {
 
 .productCard {
   margin: 5px;
-  height: 300px;
+  height: 340px;
 }
 
 .productCardImg {
@@ -48,4 +48,5 @@ code {
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-evenly;
+  align-items: center;
 }
