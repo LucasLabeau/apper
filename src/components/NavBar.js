@@ -32,7 +32,7 @@ const NavBar = () => {
               menuVariant="dark"
             >
               { categories.map((c) => (
-                <LinkContainer to={`/category/${c.id}`}><NavDropdown.Item>{c.name}</NavDropdown.Item></LinkContainer>
+                <LinkContainer key={c.id} to={`/category/${c.id}`}><NavDropdown.Item>{c.name}</NavDropdown.Item></LinkContainer>
               )) }
               <NavDropdown.Divider />
               <LinkContainer to="/free2play"><NavDropdown.Item>Free To Play</NavDropdown.Item></LinkContainer>

@@ -10,7 +10,7 @@ const ItemDetailContainer = (p) => {
   const getItem = async() => {
     const jsonData = await fetch('https://618214a284c2020017d89c79.mockapi.io/api/products');
     const data = await jsonData.json();
-    const item = await data.filter(item => item.id === itemId.productId);
+    const item = await data.filter(item => item.id === parseInt(itemId.productId));
 
       setProduct(item[0]);
 

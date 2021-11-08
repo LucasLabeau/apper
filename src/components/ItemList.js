@@ -6,7 +6,7 @@ const ItemList = (products) => {
     <div className="products">
     { products.loading ? <h1>Loading...</h1> :
       items.map((p) => (
-          <Item stock={p.stock} id={p.id} name={p.name} price={p.price} description={p.description} image={p.image}/>
+          <Item stock={p.Stock} id={p.id} key={p.id} name={p.name} price={p.price} description={p.description} image={p.image}/>
         ))
     }
     </div>
