@@ -11,9 +11,9 @@ function App() {
 
   return (
     <div className="App">
-      <CartContextProvider>
-        <Router>
-          <NavBar />
+      <Router>
+        <NavBar />
+          <CartContextProvider value={[]}>
           <main className="text-center mainContainer">
             <Switch>
               <Route exact path="/">
@@ -25,8 +25,8 @@ function App() {
               <Route exact path="/cart" component={Cart} />
             </Switch>
           </main>
-        </Router>
-      </CartContextProvider>
+        </CartContextProvider>
+      </Router>
     </div>
   );
 }

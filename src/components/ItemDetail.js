@@ -2,19 +2,24 @@ import { useState } from 'react';
 import { Container, Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ItemCount from './ItemCount.js';
-import { useCartContext } from './components/context/CartContext.js';
+import { useCartContext } from './context/CartContext.js';
 
 const ItemDetail = (p) => {
   const product = p.p;
   const [q, setQ] = useState(0);
   const [purchased, setPurchased] = useState(false);
-  const {cartContent, addToCart} = useCartContext();
+  const {cartContent, addToCart, isInCart} = useCartContext();
 
   const agregarAlCarrito = (total) => {
     setQ(total);
-    setPurchased(true);
-    addToCart({product, quantity: total});
-    alert(`You added ${total} ${product.name} to your cart`);
+    const inCart = isInCart(product.id);
+    if (!inCart) {
+      setPurchased(true);
+      addToCart({product, quantity: total});
+      alert(`You added ${total} ${product.name} to your cart`);
+    } else {
+      alert(`You already have ${product.name} in your cart`);
+    }
   }
 
   return(
@@ -28,7 +33,7 @@ const ItemDetail = (p) => {
           <Card.Text>
             {product.description}
           </Card.Text>
-          <Card.Text>${product.price}</Card.Text>
+          <Card.Text>${product.price.toFixed(2)}</Card.Text>
           <ItemCount initial={1} stock={5} onAdd={agregarAlCarrito} purchased={purchased}/>
         </Card.Body>
         <Card.Footer className="text-muted">Uploaded 2 days ago</Card.Footer>

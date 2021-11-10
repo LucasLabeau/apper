@@ -48,7 +48,7 @@ const ItemListContainer = (p) => {
     } else if (free.pathname === '/freeToPlay') {
       getFreeProducts();
       setGreeting("Free To Play");
-    } else if (free.pathname === '/') {
+    } else if (free.pathname === '/'){
       setAllProducts();
       setGreeting("ApperMarket");
     }
