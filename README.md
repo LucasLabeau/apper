@@ -68,3 +68,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+ABOUT 
+
+This project was made by Lucas Labeau for CoderHouse React Course as an educational project. The objective is to create a SPA e-commerce using "react-bootstrap", "react-router-dom", and "react-router-bootstrap" dependencies. 

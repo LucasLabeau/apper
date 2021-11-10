@@ -35,7 +35,7 @@ const NavBar = () => {
                 <LinkContainer key={c.id} to={`/category/${c.id}`}><NavDropdown.Item>{c.name}</NavDropdown.Item></LinkContainer>
               )) }
               <NavDropdown.Divider />
-              <LinkContainer to="/free2play"><NavDropdown.Item>Free To Play</NavDropdown.Item></LinkContainer>
+              <LinkContainer to="/freeToPlay"><NavDropdown.Item>Free To Play</NavDropdown.Item></LinkContainer>
             </NavDropdown>
           </Nav>
           <CartWidget />
