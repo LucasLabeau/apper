@@ -2,64 +2,51 @@ import { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import ItemList from './ItemList.js';
 import { Container } from "react-bootstrap";
-
+// https://618214a284c2020017d89c79.mockapi.io/api/categories
 const ItemListContainer = (p) => {
-  const [data, setData] = useState([]);
   const [products, setProducts] = useState([]);
+  const [filter, setFilter] = useState([]);
+
   const groupId = useParams();
   const free = useLocation();
+
   const [loading, setLoading] = useState(true);
   const [greeting, setGreeting] = useState("ApperMarket");
 
-  const getProducts = async() => {
-    const jsonData = await fetch('https://618214a284c2020017d89c79.mockapi.io/api/products');
-    const resp = await jsonData.json();
-    setData(resp);
-  }
-
-  const getCat = async() => {
+  const getCatName = async() => {
     const jsonData = await fetch('https://618214a284c2020017d89c79.mockapi.io/api/categories');
     const resp = await jsonData.json();
     const result = await resp.filter(c => c.id === groupId.categoryId);
     setGreeting(result[0].name);
   }
 
-  const getCatProducts = () => {
-    getProducts();
-    const result = data.filter(item => item.category === parseInt(groupId.categoryId));
-    setProducts(result);
-  }
-
-  const getFreeProducts = async() => {
-    getProducts();
-    const result = await data.filter(item => item.price === 0);
-    setProducts(result);
-  }
-
-  const setAllProducts = () => {
-    getProducts();
-    setProducts(data);
-  }
+  useEffect(() => {
+    fetch('https://618214a284c2020017d89c79.mockapi.io/api/products', {mode: 'cors'})
+      .then(resp => {return resp.json()})
+      .then(data => {setProducts(data)})
+      .then(setLoading(false))
+  }, []);
 
   useEffect(() => {
+    setLoading(true)
     if (groupId.categoryId !== undefined) {
-      getCatProducts();
-      getCat();
+      getCatName();
+      setFilter(products.filter((p) => (p.category === parseInt(groupId.categoryId))));
     } else if (free.pathname === '/freeToPlay') {
-      getFreeProducts();
       setGreeting("Free To Play");
+      setFilter(products.filter((p) => (p.price === 0)));
     } else if (free.pathname === '/'){
-      setAllProducts();
       setGreeting("ApperMarket");
+      setFilter(products);
     }
     setLoading(false);
-  }, [groupId, free]);
+  }, [groupId, free, products]);
 
   return(
     <>
       <h3>{ greeting }</h3>
       <Container>
-        <ItemList loading={ loading } products={ products }/>
+        <ItemList loading={ loading } products={ filter }/>
       </Container>
     </>
   );

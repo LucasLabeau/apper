@@ -14,11 +14,11 @@ const ItemDetail = (p) => {
     setQ(total);
     const inCart = isInCart(product.id);
     if (!inCart) {
-      setPurchased(true);
       addToCart({product, quantity: total});
+      setPurchased(true);
       alert(`You added ${total} ${product.name} to your cart`);
     } else {
-      alert(`You already have ${product.name} in your cart`);
+      alert(`You already have ${product.name} in your cart!`);
     }
   }
 

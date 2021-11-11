@@ -29,7 +29,7 @@ const Cart = () => {
               <td>{ p.product.name }</td>
               <td>${ p.product.price.toFixed(2)}</td>
               <td>{ p.quantity }</td>
-              <td><Button variant="outline-danger" onClick={ () => removeItem(p.product.id) }>Eliminar</Button></td>
+              <td><Button variant="outline-danger" onClick={ () => removeItem(p.product.id) }>Delete</Button></td>
             </tr>
           ))
         }
@@ -40,7 +40,7 @@ const Cart = () => {
         </tbody>
       </Table>
       <div className="text-center">
-        <Button variant="danger" onClick={ () => removeAll() }>Eliminar Todo</Button>
+        <Button variant="danger" onClick={ () => removeAll() }>Delete All</Button>
       </div>
     </Container>
   );
