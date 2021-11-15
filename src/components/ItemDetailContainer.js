@@ -21,6 +21,7 @@ const ItemDetailContainer = (p) => {
     setTimeout(() => {
       getItem();
     },2000);
+    // eslint-disable-next-line
   }, [itemId]);
 
   return(

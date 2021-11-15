@@ -11,10 +11,10 @@ function App() {
 
   return (
     <div className="App">
-    <CartContextProvider value={[]}>
-      <Router>
-        <NavBar />
-          <main className="text-center mainContainer">
+      <CartContextProvider value={[]}>
+        <Router>
+          <NavBar />
+            <main className="text-center mainContainer">
             <Switch>
               <Route exact path="/">
                 <ItemListContainer />

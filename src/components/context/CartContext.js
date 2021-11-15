@@ -9,7 +9,7 @@ const CartContextProvider = ({children}) => {
   const [cartTotal, setCartTotal] = useState(0);
 
   const addPrice = () => {
-    let reducer = cartContent.reduce((sum, item) => sum + item.quantity * item.product.price, 0);
+    const reducer = cartContent.reduce((sum, item) => sum + item.quantity * item.product.price, 0);
     setCartTotal(reducer.toFixed(2));
   }
 

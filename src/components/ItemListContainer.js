@@ -13,12 +13,7 @@ const ItemListContainer = (p) => {
   const [loading, setLoading] = useState(true);
   const [greeting, setGreeting] = useState("ApperMarket");
 
-  const getCatName = async() => {
-    const jsonData = await fetch('https://618214a284c2020017d89c79.mockapi.io/api/categories');
-    const resp = await jsonData.json();
-    const result = await resp.filter(c => c.id === groupId.categoryId);
-    setGreeting(result[0].name);
-  }
+
 
   useEffect(() => {
     fetch('https://618214a284c2020017d89c79.mockapi.io/api/products', {mode: 'cors'})
@@ -28,6 +23,12 @@ const ItemListContainer = (p) => {
   }, []);
 
   useEffect(() => {
+    const getCatName = async() => {
+      const jsonData = await fetch('https://618214a284c2020017d89c79.mockapi.io/api/categories');
+      const resp = await jsonData.json();
+      const result = await resp.filter(c => c.id === groupId.categoryId);
+      setGreeting(result[0].name);
+    }
     setLoading(true)
     if (groupId.categoryId !== undefined) {
       getCatName();
@@ -40,6 +41,7 @@ const ItemListContainer = (p) => {
       setFilter(products);
     }
     setLoading(false);
+
   }, [groupId, free, products]);
 
   return(

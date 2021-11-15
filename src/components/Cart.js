@@ -7,6 +7,7 @@ const Cart = () => {
 
   useEffect(() => {
     addPrice();
+    console.log(cartContent);
   })
 
   return(
@@ -22,7 +23,7 @@ const Cart = () => {
           </tr>
         </thead>
         <tbody>
-        {
+        { cartContent.length === 0 ? <tr><th colSpan="5">Your cart is empty</th></tr> :
           cartContent.map((p, index) => (
             <tr key={ p.product.id }>
               <td>{ index + 1 }</td>
