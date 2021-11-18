@@ -1,54 +1,58 @@
 import { useEffect, useState } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import ItemList from './ItemList.js';
 import { Container } from "react-bootstrap";
-// https://618214a284c2020017d89c79.mockapi.io/api/categories
+import { getFirestore } from './getFirestore';
+
 const ItemListContainer = (p) => {
   const [products, setProducts] = useState([]);
+  const [category, setCategory] = useState({});
   const [filter, setFilter] = useState([]);
 
   const groupId = useParams();
-  const free = useLocation();
 
   const [loading, setLoading] = useState(true);
-  const [greeting, setGreeting] = useState("ApperMarket");
+  const [greeting, setGreeting] = useState("Burgos");
 
 
 
   useEffect(() => {
-    fetch('https://618214a284c2020017d89c79.mockapi.io/api/products', {mode: 'cors'})
-      .then(resp => {return resp.json()})
-      .then(data => {setProducts(data)})
-      .then(setLoading(false))
+    const db = getFirestore();
+    const dbSearch = db.collection('items').get();
+    dbSearch
+      .then(resp => setProducts(resp.docs.map(p => ({ id: p.id, ...p.data() }))))
+      .catch(err => console.log(err))
+      .finally(() => setLoading(false))
+
+    // fetch('https://618214a284c2020017d89c79.mockapi.io/api/products', {mode: 'cors'})
+    //   .then(resp => {return resp.json()})
+    //   .then(data => {setProducts(data)})
+    //   .then(setLoading(false))
   }, []);
 
   useEffect(() => {
-    const getCatName = async() => {
-      const jsonData = await fetch('https://618214a284c2020017d89c79.mockapi.io/api/categories');
-      const resp = await jsonData.json();
-      const result = await resp.filter(c => c.id === groupId.categoryId);
-      setGreeting(result[0].name);
-    }
-    setLoading(true)
+    setLoading(true);
     if (groupId.categoryId !== undefined) {
-      getCatName();
-      setFilter(products.filter((p) => (p.category === parseInt(groupId.categoryId))));
-    } else if (free.pathname === '/freeToPlay') {
-      setGreeting("Free To Play");
-      setFilter(products.filter((p) => (p.price === 0)));
-    } else if (free.pathname === '/'){
-      setGreeting("ApperMarket");
+      const db = getFirestore();
+      const dbSearchCat = db.collection('categories').doc(groupId.categoryId).get();
+      dbSearchCat
+        .then(resp => setCategory({ id: resp.id, ...resp.data() }))
+        .catch(err => console.log(err))
+      setGreeting(category.name)
+      setFilter(products.filter(p => p.category === category.name))
+    } else {
+      setGreeting("Burgos");
       setFilter(products);
     }
     setLoading(false);
 
-  }, [groupId, free, products]);
+  }, [groupId, products, category.name]);
 
   return(
     <>
-      <h3>{ greeting }</h3>
+      <h3 className="logoFont" style={{ color: "#f7f4ef" }}>{ greeting }</h3>
       <Container>
-        <ItemList loading={ loading } products={ filter }/>
+         <ItemList loading={ loading } products={ filter }/>
       </Container>
     </>
   );

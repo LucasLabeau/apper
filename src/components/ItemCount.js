@@ -23,18 +23,18 @@ const CartAdder = ({cont, onAdd, stock, setCont}) => {
   return(
     <>
       <InputGroup>
-        <Button variant="outline-primary" onClick={ menosClick } disabled={ cont === 1 || stock <= 0 }>-</Button>
+        <Button variant="outline-info" onClick={ menosClick } disabled={ cont === 1 || stock <= 0 }>-</Button>
         <FormControl className="text-center" value={ stock > 0 ? cont : 0 } onChange={ () => onChange()}/>
-        <Button variant="outline-primary" onClick={ masClick } disabled={ cont === stock || stock <= 0 }>+</Button>
+        <Button variant="outline-info" onClick={ masClick } disabled={ cont === stock || stock <= 0 }>+</Button>
       </InputGroup>
-      <Button variant="primary" onClick={ () => onAdd(cont) } disabled={ stock <= 0 } style={{marginTop: '7px'}}>Add to cart</Button>
+      <Button variant="info" onClick={ () => onAdd(cont) } disabled={ stock <= 0 } style={{marginTop: '7px'}}>Add to cart</Button>
     </>
   );
 }
 
 const CartBuyer = () => {
   return(
-    <Link to={"/cart"}><Button variant="success" style={{marginTop: '7px'}}>Go to cart</Button></Link>
+    <Link to={"/cart"}><Button variant="secondary" style={{marginTop: '7px'}}>Go to cart</Button></Link>
   );
 }
 

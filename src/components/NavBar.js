@@ -1,27 +1,25 @@
 import { useEffect, useState } from 'react';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import { getFirestore } from './getFirestore';
 import CartWidget from './CartWidget.js';
 
 
 const NavBar = () => {
   const [categories, setCategories] = useState([]);
 
-  const getCategories = async() => {
-    const jsonData = await fetch('https://618214a284c2020017d89c79.mockapi.io/api/categories');
-    const data = await jsonData.json();
-
-    setCategories(data);
-  }
-
   useEffect(() => {
-    getCategories();
+    const db = getFirestore();
+    const dbSearch = db.collection('categories').get();
+    dbSearch
+      .then(resp => setCategories(resp.docs.map(p => ({ id: p.id, ...p.data() }))))
+      .catch(err => console.log(err));
   }, []);
 
   return(
-    <Navbar variant="dark" bg="dark" expand="lg" sticky="top">
+    <Navbar variant="dark" bg="custom" expand="lg" sticky="top" style={{ backgroundColor: "#342628", color: "#CBD9D7" }}>
       <Container fluid>
-        <LinkContainer to="/"><Navbar.Brand>ApperMarket</Navbar.Brand></LinkContainer>
+        <LinkContainer to="/"><Navbar.Brand className="logoFont">Burgos</Navbar.Brand></LinkContainer>
         <Navbar.Toggle aria-controls="mi-navbar" />
         <Navbar.Collapse id="mi-navbar">
           <Nav>
@@ -34,8 +32,6 @@ const NavBar = () => {
               { categories.map((c) => (
                 <LinkContainer key={c.id} to={`/category/${c.id}`}><NavDropdown.Item>{c.name}</NavDropdown.Item></LinkContainer>
               )) }
-              <NavDropdown.Divider />
-              <LinkContainer to="/freeToPlay"><NavDropdown.Item>Free To Play</NavDropdown.Item></LinkContainer>
             </NavDropdown>
           </Nav>
           <CartWidget />

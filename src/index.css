@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #342628 !important;
 }
 
 code {
@@ -12,7 +13,13 @@ code {
     monospace;
 }
 
+.logoFont {
+  font-family: 'Praise', cursive;
+  font-size: 3rem;
+}
+
 .mainContainer {
+  color: #CBD9D7;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
@@ -49,4 +56,9 @@ code {
   flex-flow: column nowrap;
   justify-content: space-evenly;
   align-items: center;
+}
+
+.form-control, .table {
+  background-color: inherit !important;
+  color: inherit !important;
 }

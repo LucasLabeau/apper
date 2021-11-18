@@ -1,25 +1,21 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ItemDetail from './ItemDetail.js';
+import { getFirestore } from './getFirestore';
 
 const ItemDetailContainer = (p) => {
   const itemId = useParams();
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
 
-  const getItem = async() => {
-    const jsonData = await fetch('https://618214a284c2020017d89c79.mockapi.io/api/products');
-    const data = await jsonData.json();
-    const item = await data.filter(item => item.id === parseInt(itemId.productId));
-
-      setProduct(item[0]);
-
-      setLoading(false);
-  }
-
   useEffect(() => {
     setTimeout(() => {
-      getItem();
+      const db = getFirestore();
+      const dbSearch = db.collection('items').doc(itemId.productId).get();
+      dbSearch
+        .then(resp => setProduct({ id: resp.id, ...resp.data() }))
+        .catch(err => console.log(err))
+        .finally(() => setLoading(false))
     },2000);
     // eslint-disable-next-line
   }, [itemId]);

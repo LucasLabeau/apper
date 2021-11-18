@@ -15,15 +15,15 @@ const ItemDetail = (p) => {
     if (!inCart) {
       addToCart({product, quantity: total});
       setPurchased(true);
-      alert(`You added ${total} ${product.name} to your cart`);
+      alert(`Agregaste ${total} ${product.name} a tu carrito`);
     } else {
-      alert(`You already have ${product.name} in your cart!`);
+      alert(`¡Ya tenés ${product.name} en tu carrito!`);
     }
   }
 
   return(
     <>
-      <Card key={product.id} className="text-center col-lg-8 mt-5" border="success">
+      <Card key={product.id} className="text-center col-lg-8 mt-5" border="light" style={{ backgroundColor: "inherit" }}>
         <div className="productCardImg">
           <Card.Img variant="top" src={product.image}/>
         </div>
@@ -33,12 +33,11 @@ const ItemDetail = (p) => {
             {product.description}
           </Card.Text>
           <Card.Text>${product.price.toFixed(2)}</Card.Text>
-          <ItemCount initial={1} stock={product.Stock} onAdd={agregarAlCarrito} purchased={purchased}/>
+          <ItemCount initial={1} stock={product.stock} onAdd={agregarAlCarrito} purchased={purchased}/>
         </Card.Body>
-        <Card.Footer className="text-muted">Uploaded 2 days ago</Card.Footer>
       </Card>
       <Container style={{ marginTop: '5px' }}>
-        <Link to="/"><Button variant="primary">Home</Button></Link>
+        <Link to="/"><Button variant="info">Inicio</Button></Link>
       </Container>
     </>
   );
