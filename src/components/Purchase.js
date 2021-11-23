@@ -16,7 +16,6 @@ const Purchase = (cartContent, removeAll, cartTotal) => {
     $("#buyerBtn").fadeOut();
   }
 
-
   const endPurchase = (e) => {
     e.preventDefault();
 
@@ -45,7 +44,6 @@ const Purchase = (cartContent, removeAll, cartTotal) => {
     resetForm();
   }
 
-  
   return(
     <>
       <Button id="buyerBtn" style={{ height: "38px" }} variant="success" onClick={ () => showForm() }>Comprar</Button>

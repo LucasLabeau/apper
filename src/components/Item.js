@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom';
-import { Button, Card } from 'react-bootstrap';
+import { Button, Card, Container } from 'react-bootstrap';
 
 const Item = (item) => {
   return (
     <Card className="productCard text-center col-lg-3" border="custom" style={{ backgroundColor: "inherit", borderColor: "#CBD9D7" }}>
-      <div className="productCardImg">
-        <Card.Img className="productImg" variant="top" src={item.image}/>
-      </div>
+      <Container fluid className="d-flex justify-content-center" style={{ height: "250px" }}>
+        <div className="productCardImg">
+          <Card.Img className="productImg" variant="top" src={item.image}/>
+        </div>
+      </Container>
       <Card.Body className="productListCardBody">
         <Card.Title>{item.name}</Card.Title>
         <Card.Text>${item.price.toFixed(2)}</Card.Text>

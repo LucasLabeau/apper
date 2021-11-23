@@ -1,7 +1,7 @@
 import Item from "./Item.js"
 
 const ItemList = (products) => {
-  const items=products.products;
+  const items = products.products.sort((a,b) => a.price-b.price);
   return(
     <div className="products">
     { products.loading ? <h1>Loading...</h1> :

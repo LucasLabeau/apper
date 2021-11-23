@@ -6,7 +6,7 @@ import { getFirestore } from './getFirestore';
 
 const ItemListContainer = (p) => {
   const [products, setProducts] = useState([]);
-  const [category, setCategory] = useState({});
+  const [chosenCategory, setChosenCategory] = useState({});
   const [filter, setFilter] = useState([]);
 
   const groupId = useParams();
@@ -36,18 +36,18 @@ const ItemListContainer = (p) => {
       const db = getFirestore();
       const dbSearchCat = db.collection('categories').doc(groupId.categoryId).get();
       dbSearchCat
-        .then(resp => setCategory({ id: resp.id, ...resp.data() }))
+        .then(resp => setChosenCategory({ id: resp.id, ...resp.data() }))
         .catch(err => console.log(err))
         .finally(() => setLoading(false))
-      setGreeting(category.name)
-      setFilter(products.filter(p => p.category === category.name))
+      setGreeting(chosenCategory.name)
+      setFilter(products.filter(p => p.category === chosenCategory.name))
     } else {
       setGreeting("Burgos");
       setFilter(products);
     }
     setLoading(false);
 
-  }, [groupId, products, category.name]);
+  }, [groupId, products, chosenCategory.name]);
 
   return(
     <>
