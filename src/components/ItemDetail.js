@@ -25,7 +25,7 @@ const ItemDetail = (p) => {
     <>
       <Card key={product.id} className="text-center col-lg-8 mt-5" border="light" style={{ backgroundColor: "inherit" }}>
         <div className="productCardImg">
-          <Card.Img variant="top" src={product.image}/>
+          <Card.Img className="productImg" variant="top" src={product.image}/>
         </div>
         <Card.Body>
           <Card.Title>{product.name}</Card.Title>

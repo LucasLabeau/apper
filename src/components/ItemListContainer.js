@@ -38,6 +38,7 @@ const ItemListContainer = (p) => {
       dbSearchCat
         .then(resp => setCategory({ id: resp.id, ...resp.data() }))
         .catch(err => console.log(err))
+        .finally(() => setLoading(false))
       setGreeting(category.name)
       setFilter(products.filter(p => p.category === category.name))
     } else {

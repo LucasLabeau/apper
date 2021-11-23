@@ -27,7 +27,7 @@ const CartAdder = ({cont, onAdd, stock, setCont}) => {
         <FormControl className="text-center" value={ stock > 0 ? cont : 0 } onChange={ () => onChange()}/>
         <Button variant="outline-info" onClick={ masClick } disabled={ cont === stock || stock <= 0 }>+</Button>
       </InputGroup>
-      <Button variant="info" onClick={ () => onAdd(cont) } disabled={ stock <= 0 } style={{marginTop: '7px'}}>Add to cart</Button>
+      <Button variant="outline-info" onClick={ () => onAdd(cont) } disabled={ stock <= 0 } style={{marginTop: '7px'}}>Add to cart</Button>
     </>
   );
 }

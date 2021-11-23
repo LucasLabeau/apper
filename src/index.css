@@ -42,6 +42,7 @@ code {
 .productCard {
   margin: 5px;
   height: 340px;
+  min-width: 280px !important;
 }
 
 .productCardImg {
@@ -49,6 +50,11 @@ code {
   width: 100px;
   height: auto;
   align-self: center;
+}
+
+.productImg {
+  max-width: 150px;
+  max-height: 100px;
 }
 
 .productListCardBody {
