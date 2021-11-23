@@ -5,6 +5,7 @@
 !/node_modules/react-bootstrap
 !/node_modules/react-router-bootstrap
 !/node_modules/firebase
+!/node_modules/jquery
 /.pnp
 .pnp.js
 

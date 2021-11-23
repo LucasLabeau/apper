@@ -1,39 +1,8 @@
 import { useEffect } from 'react';
-import $ from 'jquery';
 import { useCartContext } from './context/CartContext.js';
+import Purchase from './Purchase.js'
 import { Link } from 'react-router-dom';
-import { Table, Button, Container, Form } from 'react-bootstrap';
-
-const Purchase = (cartContent, removeAll) => {
-  const showForm = () => {
-    $("#buyerForm").slideDown();
-    $("#buyerBtn").fadeOut();
-  }
-  const endPurchase = (e) => {
-    e.preventDefault();
-    alert("Terminaste con tu compra");
-  }
-  return(
-    <>
-      <Button id="buyerBtn" style={{ height: "38px" }} variant="success" onClick={ () => showForm() }>Comprar</Button>
-      <Form id="buyerForm" className="" style={{ display: "none" }}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Nombre Completo</Form.Label>
-          <Form.Control type="text" placeholder="Nombre Completo" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Dirección</Form.Label>
-          <Form.Control type="text" placeholder="Dirección" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Teléfono</Form.Label>
-          <Form.Control type="text" placeholder="Teléfono" />
-        </Form.Group>
-        <Button variant="success" onClick={ () => endPurchase() } /*type="submit"*/>Terminar mi compra</Button>
-      </Form>
-    </>
-  )
-}
+import { Table, Button, Container } from 'react-bootstrap';
 
 const Cart = () => {
   const { cartContent, cartTotal, removeItem, removeAll, addPrice } = useCartContext();
@@ -75,7 +44,7 @@ const Cart = () => {
       <div className="d-flex justify-content-between">
         <Button style={{ height: "38px" }} variant="warning" onClick={ () => removeAll() }>Borrar Todo</Button>
         { cartContent.length === 0  ? <div/> :
-            <Purchase cartContent={ cartContent } removeAll={ removeAll } />
+            <Purchase cartContent={ cartContent } removeAll={ removeAll } cartTotal={ cartTotal } />
         }
       </div>
       <Container style={{ marginTop: '25px', float: "left" }}>
