@@ -15,7 +15,6 @@ const ItemDetail = (p) => {
     if (!inCart) {
       addToCart({product, quantity: total});
       setPurchased(true);
-      alert(`Agregaste ${total} ${product.name} a tu carrito`);
     } else {
       alert(`¡Ya tenés ${product.name} en tu carrito!`);
     }

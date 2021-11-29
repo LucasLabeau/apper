@@ -1,25 +1,41 @@
 import $ from 'jquery';
 import { Button, Form } from 'react-bootstrap';
 import { getFirestore } from './getFirestore';
+import  firebase from 'firebase/app';
 
 const Purchase = (cartContent, removeAll, cartTotal) => {
   let products = cartContent.cartContent;
 
-  const resetForm = function() {
-    $(".formName").val("");
-    $(".formAddress").val("");
-    $(".formPhone").val("");
-  }
+  const showForm = (e) => {
+    e.preventDefault();
 
-  const showForm = () => {
     $("#buyerForm").slideDown();
     $("#buyerBtn").fadeOut();
+  }
+
+  const hideForm = (e) => {
+    e.preventDefault();
+
+    $("#buyerForm").slideToggle();
+    $("#buyerBtn").fadeIn();
+  }
+
+  const finalMsg = (id) => {
+    console.log(id);
+    $(".cartBtns").remove();
+    $(".cartTable").remove();
+    $(".cartContainer").prepend(`
+      <h3>¡Su compra ha finalizado con éxito!</h3>
+      <h5>El ID de su orden: ${id}</h5>
+    `);
   }
 
   const endPurchase = (e) => {
     e.preventDefault();
 
     let userData = {};
+
+    let orderId;
 
     userData.buyer = {
       name: $(".formName").val(),
@@ -34,19 +50,19 @@ const Purchase = (cartContent, removeAll, cartTotal) => {
       return {id, name, price, quantity};
     });
     userData.totalPrice = cartContent.cartTotal;
+    userData.date = firebase.firestore.Timestamp.fromDate(new Date());
 
     const dbQuery = getFirestore();
     dbQuery.collection('orders').add(userData)
+      .then(resp => orderId = resp.id)
+      .then(() => finalMsg(orderId))
       .catch(err => console.log(err))
       .finally(() => cartContent.removeAll())
-
-    alert("Terminaste con tu compra");
-    resetForm();
   }
 
   return(
     <>
-      <Button id="buyerBtn" style={{ height: "38px" }} variant="success" onClick={ () => showForm() }>Comprar</Button>
+      <Button id="buyerBtn" style={{ height: "38px" }} variant="success" onClick={ e => showForm(e) }>Comprar</Button>
       <Form id="buyerForm" className="" style={{ display: "none" }}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Nombre Completo</Form.Label>
@@ -60,7 +76,10 @@ const Purchase = (cartContent, removeAll, cartTotal) => {
           <Form.Label>Teléfono</Form.Label>
           <Form.Control type="text" placeholder="Teléfono" className="formPhone"/>
         </Form.Group>
-        <Button variant="success" onClick={ e => endPurchase(e) } type="submit">Terminar mi compra</Button>
+        <div className="d-flex flex-column flex-md-row">
+          <Button variant="warning" onClick={ e => hideForm(e) } style={{ marginRight: "10px" }}>Cancelar</Button>
+          <Button variant="success" onClick={ e => endPurchase(e) } type="submit">Terminar mi compra</Button>
+        </div>
       </Form>
     </>
   )

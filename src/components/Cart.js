@@ -13,7 +13,7 @@ const Cart = () => {
 
   return(
     <Container className="cartContainer">
-      <Table bordered size="sm">
+      <Table bordered size="sm" className="cartTable">
         <thead>
           <tr>
             <th>#</th>
@@ -41,7 +41,7 @@ const Cart = () => {
           </tr>
         </tbody>
       </Table>
-      <div className="d-flex justify-content-between">
+      <div className="cartBtns d-flex justify-content-between">
         <Button style={{ height: "38px" }} variant="warning" onClick={ () => removeAll() }>Borrar Todo</Button>
         { cartContent.length === 0  ? <div/> :
             <Purchase cartContent={ cartContent } removeAll={ removeAll } cartTotal={ cartTotal } />
