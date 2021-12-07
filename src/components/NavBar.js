@@ -29,7 +29,7 @@ const NavBar = () => {
             <LinkContainer to="/"><Nav.Link>Home</Nav.Link></LinkContainer>
             <NavDropdown
               id="nav-dropdown-dark-example"
-              title="Categories"
+              title="Categorías"
               menuVariant="dark"
             >
               { categories.map((c) => (
