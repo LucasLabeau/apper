@@ -6,8 +6,10 @@ import CartWidget from './CartWidget.js';
 
 
 const NavBar = () => {
+  // VARIABLES
   const [categories, setCategories] = useState([]);
 
+  // EFECTO EJECUTADO UNA VEZ PARA CONSEGUIR LAS CATEGORÍAS
   useEffect(() => {
     const db = getFirestore();
     const dbSearch = db.collection('categories').get();
@@ -16,6 +18,7 @@ const NavBar = () => {
       .catch(err => console.log(err));
   }, []);
 
+  //RENDER
   return(
     <Navbar variant="dark" bg="custom" expand="lg" sticky="top" style={{ backgroundColor: "#342628", color: "#CBD9D7" }}>
       <Container fluid>

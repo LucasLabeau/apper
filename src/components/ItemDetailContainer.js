@@ -4,10 +4,12 @@ import ItemDetail from './ItemDetail.js';
 import { getFirestore } from './getFirestore';
 
 const ItemDetailContainer = (p) => {
+  // VARIABLES
   const itemId = useParams();
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
 
+  // ESFECTO QUE SE EJECUTA CADA VEZ QUE CAMBIA EL ID DEL PARAMS
   useEffect(() => {
     setTimeout(() => {
       const db = getFirestore();
@@ -20,6 +22,7 @@ const ItemDetailContainer = (p) => {
     // eslint-disable-next-line
   }, [itemId]);
 
+  // RENDER CONDICIONAL
   return(
     <>
     { loading ? <h1>Loading...</h1> :

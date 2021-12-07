@@ -2,14 +2,15 @@ import { useState } from 'react';
 import { Container, Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useCartContext } from './context/CartContext.js';
-
 import ItemCount from './ItemCount.js';
 
 const ItemDetail = (p) => {
+  // VARIABLES (Y CONTEXT)
   const product = p.p;
   const [purchased, setPurchased] = useState(false);
   const { addToCart, isInCart} = useCartContext();
 
+  // FUNCIÓN QUE CHEQUEA SI YA ESTÁ EL PRODUCTO EN EL CARRITO
   const agregarAlCarrito = (total) => {
     const inCart = isInCart(product.id);
     if (!inCart) {
@@ -20,6 +21,7 @@ const ItemDetail = (p) => {
     }
   }
 
+  // RENDER DE LA CARD CON DETALLE DEL ÍTEM
   return(
     <>
       <Card key={product.id} className="text-center col-lg-8 mt-5" border="light" style={{ backgroundColor: "inherit" }}>

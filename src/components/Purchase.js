@@ -6,6 +6,7 @@ import  firebase from 'firebase/app';
 const Purchase = (cartContent, removeAll, cartTotal) => {
   let products = cartContent.cartContent;
 
+  // FUNCIÓN MOSTRAR FORMULARIO DE COMPRA
   const showForm = (e) => {
     e.preventDefault();
 
@@ -13,6 +14,7 @@ const Purchase = (cartContent, removeAll, cartTotal) => {
     $("#buyerBtn").fadeOut();
   }
 
+  // FUNCIÓN OCULTAR FORMULARIO DE COMPRA
   const hideForm = (e) => {
     e.preventDefault();
 
@@ -20,8 +22,8 @@ const Purchase = (cartContent, removeAll, cartTotal) => {
     $("#buyerBtn").fadeIn();
   }
 
+  // FUNCIONES PARA TERMINAR LA COMPRA Y MOSTRAR ID DE LA ORDEN
   const finalMsg = (id) => {
-    console.log(id);
     $(".cartBtns").remove();
     $(".cartTable").remove();
     $(".cartContainer").prepend(`
@@ -37,6 +39,7 @@ const Purchase = (cartContent, removeAll, cartTotal) => {
 
     let orderId;
 
+    // CONSTRUCCIÓN DEL OBJETO userData
     userData.buyer = {
       name: $(".formName").val(),
       address: $(".formAddress").val(),
@@ -52,6 +55,7 @@ const Purchase = (cartContent, removeAll, cartTotal) => {
     userData.totalPrice = cartContent.cartTotal;
     userData.date = firebase.firestore.Timestamp.fromDate(new Date());
 
+    // SUBIDA A LA BASE DE DATOS
     const dbQuery = getFirestore();
     dbQuery.collection('orders').add(userData)
       .then(resp => orderId = resp.id)
@@ -60,6 +64,7 @@ const Purchase = (cartContent, removeAll, cartTotal) => {
       .finally(() => cartContent.removeAll())
   }
 
+  // RENDER DEL FORM
   return(
     <>
       <Button id="buyerBtn" style={{ height: "38px" }} variant="success" onClick={ e => showForm(e) }>Comprar</Button>

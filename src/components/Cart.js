@@ -5,12 +5,15 @@ import { Link } from 'react-router-dom';
 import { Table, Button, Container } from 'react-bootstrap';
 
 const Cart = () => {
+  // VARIABLE DEL CONTEXT
   const { cartContent, cartTotal, removeItem, removeAll, addPrice } = useCartContext();
 
+  // EFECTO EJECUTADO EN CADA RENDER PARA SUMAR EL PRECIO TOTAL
   useEffect(() => {
     addPrice();
   })
 
+  // RENDER
   return(
     <Container className="cartContainer">
       <Table bordered size="sm" className="cartTable">

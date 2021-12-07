@@ -5,6 +5,7 @@ import { Container } from "react-bootstrap";
 import { getFirestore } from './getFirestore';
 
 const ItemListContainer = (p) => {
+  // VARIABLES
   const [products, setProducts] = useState([]);
   const [chosenCategory, setChosenCategory] = useState({});
   const [filter, setFilter] = useState([]);
@@ -15,7 +16,7 @@ const ItemListContainer = (p) => {
   const [greeting, setGreeting] = useState("Burgos");
 
 
-
+  // EFECTO EJECUTADO UNA VEZ PARA CONSEGUIR LOS PRODUCTOS
   useEffect(() => {
     const db = getFirestore();
     const dbSearch = db.collection('items').get();
@@ -23,25 +24,24 @@ const ItemListContainer = (p) => {
       .then(resp => setProducts(resp.docs.map(p => ({ id: p.id, ...p.data() }))))
       .catch(err => console.log(err))
       .finally(() => setLoading(false))
-
-    // fetch('https://618214a284c2020017d89c79.mockapi.io/api/products', {mode: 'cors'})
-    //   .then(resp => {return resp.json()})
-    //   .then(data => {setProducts(data)})
-    //   .then(setLoading(false))
   }, []);
 
+  // EFECTO EJECUTADO CADA VEZ QUE SE ACTUALICE EL PARAMS, LOS PRODUCTOS, Y LA CATEGORÍA ELEGIDA.
   useEffect(() => {
     setLoading(true);
     if (groupId.categoryId !== undefined) {
+      // SI HAY CATEGORÍA
       const db = getFirestore();
       const dbSearchCat = db.collection('categories').doc(groupId.categoryId).get();
       dbSearchCat
         .then(resp => setChosenCategory({ id: resp.id, ...resp.data() }))
         .catch(err => console.log(err))
         .finally(() => setLoading(false))
+
       setGreeting(chosenCategory.name)
       setFilter(products.filter(p => p.category === chosenCategory.name))
     } else {
+      // SI NO HAY CATEGORÍA
       setGreeting("Burgos");
       setFilter(products);
     }
@@ -49,6 +49,7 @@ const ItemListContainer = (p) => {
 
   }, [groupId, products, chosenCategory.name]);
 
+  // RENDER
   return(
     <>
       <h3 className="logoFont" style={{ color: "#f7f4ef" }}>{ greeting }</h3>

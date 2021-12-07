@@ -1,7 +1,10 @@
 import Item from "./Item.js"
 
 const ItemList = (products) => {
+  // VARIABLE QUE ORGANIZA LOS PRODUCTOS DEL MÁS BARATO AL MÁS CARO
   const items = products.products.sort((a,b) => a.price-b.price);
+
+  // RENDER CONDICIONAL CON MAPEO DE PRODUCTOS
   return(
     <div className="products">
     { products.loading ? <h1>Loading...</h1> :

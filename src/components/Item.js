@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Button, Card, Container } from 'react-bootstrap';
 
 const Item = (item) => {
+  // RENDER DE LA CARD DEL ÍTEM
   return (
     <Card className="productCard text-center col-lg-3" border="custom" style={{ backgroundColor: "inherit", borderColor: "#CBD9D7" }}>
       <Container fluid className="d-flex justify-content-center" style={{ height: "250px" }}>

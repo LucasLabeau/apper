@@ -1,11 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules/*
-!/node_modules/react-bootstrap
-!/node_modules/react-router-bootstrap
-!/node_modules/firebase
-!/node_modules/jquery
+/node_modules
+
 /.pnp
 .pnp.js
 

@@ -1,3 +1,19 @@
+ABOUT
+
+(ES)
+
+Este proyecto fue realizado por Lucas Labeau para el curso de ReactJS de CoderHouse. El objetivo es crear una SPA de un e-commerce para un restorán ficticio. Un sólo archivo CSS fue utilizado, ubicado en la carpeta "src".
+
+Todos los componentes están sueltos en la carpeta "components", excepto el utilizado para la implementación del context, que está en su propia carpeta.
+
+Dependencias:
+  - [react-bootstrap] - (versión 2.0.0) - Para implementar estilos sin mucho CSS.
+  - [react-router-dom] - (versión 5.3.0) - Para controlar el routing del sitio.
+  - [react-router-bootstrap] - (versión 0.25.0) - Para poder implementar Links con Bootstrap.
+  - [jquery] - (versión 3.6.0) - Para añadirle animaciones simples al componente "Purchase.js" que se muestra en el carrito.
+  - [firebase] - (versión 8.9.1) - Para almacenar datos de productos, categorías y órdenes.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,8 +84,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-
-ABOUT 
-
-This project was made by Lucas Labeau for CoderHouse React Course as an educational project. The objective is to create a SPA e-commerce using "react-bootstrap", "react-router-dom", and "react-router-bootstrap" dependencies. 
