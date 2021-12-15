@@ -24,8 +24,8 @@ This project was made by Lucas Labeau for CoderHouse' ReactJS course. The object
 All components are loose inside the "components" folder, except for the one used for context implementation, which is in its own folder.
 
 Dependencies:
-  - [react-bootstrap] - (versión 2.0.0) - To implement styles without writing too much CSS.
-  - [react-router-dom] - (versión 5.3.0) - To handle the site's routing.
-  - [react-router-bootstrap] - (versión 0.25.0) - To be able to implement Links with Bootstrap.
-  - [jquery] - (versión 3.6.0) - To add simple animations to the "Purchase.js" component which is shown on the cart.
-  - [firebase] - (versión 8.9.1) - To store data regarding products, categories, and purchases.
+  - [react-bootstrap] - (version 2.0.0) - To implement styles without writing too much CSS.
+  - [react-router-dom] - (version 5.3.0) - To handle the site's routing.
+  - [react-router-bootstrap] - (version 0.25.0) - To be able to implement Links with Bootstrap.
+  - [jquery] - (version 3.6.0) - To add simple animations to the "Purchase.js" component which is shown on the cart.
+  - [firebase] - (version 8.9.1) - To store data regarding products, categories, and purchases.
