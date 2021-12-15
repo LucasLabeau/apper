@@ -20,7 +20,6 @@ function App() {
               </Route>
               <Route exact path="/product/:productId" component={ItemDetailContainer} />
               <Route exact path="/category/:categoryId" component={ItemListContainer} />
-              <Route exact path="/freeToPlay" component={ItemListContainer} />
               <Route exact path="/cart" component={Cart} />
             </Switch>
           </main>
